@@ -14,7 +14,7 @@ export async function before(m) {
         let res = await fetch('https://restapi.frteam.xyz/ceksambungkata?kata=' + m.text.toLowerCase().split(' ')[0] + '&apikey=Hrbot')
         let json = await res.json()
         if (!answerF.startsWith(this.filter(this.skata[id][1]))) {
-            return m.reply(`👎🏻 *Salah!*\nJawaban harus dimulai dari kata *${this.filter(this.skata[id][1]).toUpperCase()}*`)
+            return m.reply(`👎🏻 *Salah!*\nJawaban harus dimulai dari kata *${this.filter(this.skata[id][1].toUpperCase())}*`)
         } else if (!json.status) {
             return m.reply(`👎🏻 *Salah!*\nKata *${m.text.toUpperCase()}* tidak valid!`)
         } else if (this.skata[id][1] == answerF) {
@@ -25,7 +25,7 @@ export async function before(m) {
         global.db.data.users[m.sender].exp += 100
         this.skata[id][2].push(answerF)
         this.skata[id] = [
-            await this.reply(m.chat, 'Lanjut : *' + answerF.toUpperCase() + '*\n\n*' + this.filter(answerF).toUpperCase() + '... ?*\n\n*balas pesan ini untuk menjawab!*', m),
+            await this.reply(m.chat, 'Lanjut : *' + answerF.toUpperCase() + '*\n\n*' + this.filter(answerF.toUpperCase()) + '... ?*\n\n*balas pesan ini untuk menjawab!*', m),
             answerF,
             this.skata[id][2]
         ]

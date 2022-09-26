@@ -150,6 +150,32 @@ if (!text) throw `Contoh:\n${usedPrefix + command} 853c80ef3c3749fdaa49938b674ad
 	return await conn.sendListM(m.chat, button, row, m)
 }
 
+if (command == 'randomuser') {
+let ft = await fetch('https://randomuser.me/api/')
+let res = await ft.json()
+let v = res.results[0]
+let cp = `
+v.gender:* ${v.gender}
+*name.title:* ${v.name.title}
+*name.first:* ${v.name.first}
+*name.last:* ${v.name.last}
+*location.street.name:* ${v.location.street.name}
+*login.uuid:* ${v.login.uuid}
+*login.username:* ${v.login.username}
+*login.password:* ${v.login.password}
+*login.salt:* ${v.login.salt}
+*login.md5:* ${v.login.md5}
+*login.sha1:* ${v.login.sha1}
+*login.sha256:* ${v.login.sha256}
+*registered.date:* ${v.registered.date}
+*cell:* ${v.cell}
+*picture.large:* ${v.picture.large}
+`
+conn.sendButton(m.chat, cp, wm, v.picture.large, [
+                ['Get Avatar', `${usedPrefix}avatar ${v.login.uuid}`]
+            ], fakes, adReply)
+}
+
 if (command == 'lmsea') {
 if (!text) throw `Contoh:\n${usedPrefix + command} megumin`
 let res = await fetch(`https://imsea.herokuapp.com/api/1?q=${text}`)
@@ -305,7 +331,7 @@ if (command == 'nhentais') {
 }
 
 }
-handler.command = handler.help = ['nhentais', 'cqr', 'catboys', 'animals', 'nekos', 'avatar', 'lmsea', 'iqrax', 'juzammax', 'hadistx', 'alquranx', 'tafsirsurahx', 'karakter']
+handler.command = handler.help = ['nhentais', 'cqr', 'catboys', 'animals', 'nekos', 'avatar', 'randomuser', 'lmsea', 'iqrax', 'juzammax', 'hadistx', 'alquranx', 'tafsirsurahx', 'karakter']
 handler.tags = ['random']
 
 export default handler

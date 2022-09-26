@@ -67,6 +67,15 @@ if (command == 'fotodog2') {
             ], fakes, adReply)
 }
 
+if (command == 'fotodog3') {
+  let res = await fetch(`https://dog.ceo/api/breeds/image/random`)
+  let x = await res.json()
+  await conn.sendButton(m.chat, `*Dog:*
+  ${command}`, wm, x.message, [
+                ['Next', `${usedPrefix + command}`]
+            ], fakes, adReply)
+}
+
 if (command == 'fotofox') {
   let res = await fetch(`https://randomfox.ca/floof/`)
   let x = await res.json()
@@ -80,6 +89,16 @@ if (command == 'fotoshibe') {
   let res = await fetch(`https://shibe.online/api/shibes?count=10&urls=true&httpsUrls=true`)
   let x = await res.json()
   await conn.sendButton(m.chat, `*Shibe:*
+  ${command}`, wm, x.getRandom(), [
+                ['Next', `${usedPrefix + command}`]
+            ], fakes, adReply)
+}
+
+if (command == 'kitten') {
+if (!args[0] || !args[1]) throw 'Masukkan Size'
+  let res = await fetch('https://placekitten.com/' + args[0] + '/' + args[1])
+  let x = await res.json()
+  await conn.sendButton(m.chat, `*Kitten:*
   ${command}`, wm, x.getRandom(), [
                 ['Next', `${usedPrefix + command}`]
             ], fakes, adReply)
@@ -348,7 +367,7 @@ conn.sendButton(m.chat, 'lolimaker', wm, jsn, [['🔄 Next 🔄', `${usedPrefix 
 
 
 }
-handler.command = handler.help = ['urlscan', 'fotoduck', 'fotobear', 'fotodog', 'fotodog2', 'fotofox', 'fotoshibe', 'drinks', 'rules', 'say', 'repeat', 'repeat2', 'dmpsearch', 'dmpdown', 'gacha', 'ziy']
+handler.command = handler.help = ['urlscan', 'fotoduck', 'fotobear', 'fotodog', 'fotodog2', 'fotodog3', 'fotofox', 'fotoshibe', 'kitten', 'drinks', 'rules', 'say', 'repeat', 'repeat2', 'dmpsearch', 'dmpdown', 'gacha', 'ziy']
 handler.tags = ['random']
 
 export default handler

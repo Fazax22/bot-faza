@@ -16,8 +16,6 @@ handler.help = ['nightcafe']
 handler.tags = ['internet']
 handler.command = /^nightcafe$/i
 
-handler.rowner = true
-
 export default handler
 
 /* New Line */

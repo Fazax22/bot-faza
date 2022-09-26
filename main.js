@@ -88,21 +88,9 @@ loadDatabase()
 global.authFile = `${opts._[0] || 'session'}.data.json`
 const { state, saveState } = store.useSingleFileAuthState(global.authFile)
 
-/*
 const connectionOptions = {
 printQRInTerminal: true,
 auth: state
-}
-*/
-
-const connectionOptions = {
-printQRInTerminal: true,
-auth: state,
-syncFullHistory: true,
-downloadHistory: true,
-markOnlineOnConnect: true,
-generateHighQualityLinkPreview: true,
-defaultQueryTimeoutMs: undefined
 }
 
 global.conn = makeWASocket(connectionOptions)

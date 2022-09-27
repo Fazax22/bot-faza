@@ -14,9 +14,9 @@ export async function before(m, { conn, isAdmin, isBotAdmin }) {
    await conn.groupParticipantsUpdate(m.chat, [m.sender], "remove")
         await conn.sendButton(m.chat, `*Font Virtext detect!*${isBotAdmin ? '' : '\n\n_Bot bukan admin_'}`, author, ['off antivirtex', '/disable antivirtex'], m)
         if (isBotAdmin && bot.restrict) {
-       return m.reply('Ok!')
+       return m.reply('Kick!')
         await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-        } else if (!bot.restrict) return m.reply('Owner disable auto kick!')
+        } else if (!bot.restrict) return m.reply('Mungkin dia atmin!')
     }
     return !0
 }

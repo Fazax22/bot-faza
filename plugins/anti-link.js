@@ -15,9 +15,9 @@ export async function before(m, { isAdmin, isBotAdmin }) {
         }
         await conn.sendButton(m.chat, `*Group link detect!* ${isBotAdmin ? '' : '\n\n_Bot not admin_  t_t'}`, author, ['off antilink', '/disable antilink'], m)
         if (isBotAdmin && bot.restrict) {
-        await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
-            await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-        } else if (!bot.restrict) return m.reply('Semoga harimu suram!')
+        return conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
+        return conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+        } else if (!bot.restrict) return m.reply('*Anda Atmin Anda Aman :v!*')
     }
     return !0
 }

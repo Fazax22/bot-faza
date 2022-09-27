@@ -3,8 +3,8 @@ let handler = async(m, {
 	conn, text, usedPrefix, command, args
 }) => {
 
-	if (args[0].length > 14) throw 'Nomor Kepanjangan'
-	if (args[0].length < 7) throw 'Nomor Kependekan'
+	if (args.length > 14) throw 'Nomor Kepanjangan'
+	if (args.length < 7) throw 'Nomor Kependekan'
 	if (args[0].startsWith('0')) throw 'Gunakan format 62'
 	if (!args[0]) throw 'Masukkan Teks'
 	

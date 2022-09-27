@@ -41,6 +41,10 @@ ${htjava} ${txt}
             if (Object.values(this.menfes).find(room => room.check(m.sender))) return this.sendButton(m.chat, '*Kamu masih berada di dalam menfes chat, menunggu Balasan*', author, null, [['Keluar', `.menfesleave`]], m)
             let room = Object.values(this.menfes).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
+                room.b = m.sender
+                room.state = 'CHATTING'
+                await this.sendButton(room.a, '*Balasan ditemukan!*', author, null, [['End', `.menfesleave`]], m)
+            } else {
             // Batas
 	if (!m.quoted) {
 		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], m)
@@ -51,10 +55,6 @@ ${htjava} ${txt}
 	}
 	await conn.sendButton(m.chat, suks, wm, null, [['Ok', 'Huuu']], m, { mentions: conn.parseMention(suks) })
             // Batas
-                room.b = m.sender
-                room.state = 'CHATTING'
-                await this.sendButton(room.a, '*Balasan ditemukan!*', author, null, [['End', `.menfesleave`]], m)
-            } else {
                 let id = + new Date
                 this.menfes[id] = {
                     id,

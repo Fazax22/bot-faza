@@ -9,7 +9,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     let name = await conn.getName(who)
     let q = m.quoted ? m.quoted : m
-    let mime = (q.msg || q).mimetype || q.mediaType || q.mtype || ''
+    let mime = (q.msg || q).mimetype || q.mediaType || ''
     if (/webp|image|video/g.test(mime)) {
       if (/video/g.test(mime)) if ((q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!')
       let img = await q.download?.()
@@ -19,7 +19,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         if (/webp/g.test(mime)) out = await webp2png(img)
         else if (/image/g.test(mime)) out = await uploadImage(img)
         else if (/video/g.test(mime)) out = await uploadFile(img)
-        else if (/viewOnce/g.test(mime)) out = await uploadFile(img)
         if (typeof out !== 'string') out = await uploadImage(img)
         stiker = await sticker(false, out, global.packname, name)
       } catch (e) {

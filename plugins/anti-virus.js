@@ -7,7 +7,7 @@ export async function before(m, { conn, isAdmin, isBotAdmin }) {
     let bot = global.db.data.settings[this.user.jid] || {}
     let hapus = m.key.participant
     let bang = m.key.id
-    let regVirtex = /(㜸ཽཽཽ͢͢͢|PLHIPS|ดุื|৭৭|๑๑|๒๒|[Đৡผ๖⃟])/i
+    let regVirtex = /(PLHIPS|৭৭|๑๑|๒๒|[Đৡดผ๖⃝-⃟⃢-⃤㜸])/i
     let isVirtexOn = regVirtex.exec(m.text)
     if (chat.antiVirtex && isVirtexOn && !m.fromMe) {
    await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})

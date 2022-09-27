@@ -9,13 +9,13 @@ export async function before(m, { conn, isAdmin, isBotAdmin }) {
     let bang = m.key.id
     
     if (chat.antiVirtex) {
-   let regpz = ['৭৭', '๒๒', '๖', '๑๑', 'ผ', 'ดุื', 'PLHIPS', 'ৡ', '⃟', 'Đ', '㜸ཽཽཽ͢͢͢']
-   let isVertexsAll = m.text.includes(regpz)
+   let regpz = /^(\u{3738}\u{f7d}\u{362}\u{f7d}\u{362}\u{f7d}\u{362}|PLHIPS|\u{e14}\u{e38}\u{e37}|\u{9ed}\u{9ed}|\u{e51}\u{e51}|\u{e52}\u{e52}|\u{110}|\u{9e1}|\u{e1c}|\u{e56}|\u{20df})$/i
+   let isVertexsAll = regpz.exec(m.text)
    if (isVertexsAll && !m.fromMe) {
    if (!m.isBaileys && m.text.length > 384)
    if (m.text && m.text.length >= 25000)
    await conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
-   //await conn.groupParticipantsUpdate(m.chat, [m.sender], "remove")
+   await conn.groupParticipantsUpdate(m.chat, [m.sender], "remove")
    }
         await conn.sendButton(m.chat, `*Font Virtext detect!*${isBotAdmin ? '' : '\n\n_Bot bukan admin_'}`, author, ['off antivirtex', '/disable antivirtex'], m)
         if (isBotAdmin && bot.restrict) {

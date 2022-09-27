@@ -6,6 +6,7 @@ let handler = async (m, { conn, args, usedPrefix, text, command }) => {
 if (!text) throw 'Masukkan teks, Ex. Animal'
 	let su = await fetch('https://api.publicapis.org/entries?title=' + text)
 	let sul = await su.json()
+	if (sul.count == 0) throw eror
 	let listSections = []
 	Object.values(sul.entries).map((v, index) => {
 	let des = `\n\n
@@ -17,7 +18,7 @@ if (!text) throw 'Masukkan teks, Ex. Animal'
 *Link:* ${v.Link}
 *Category:* ${v.Category}
 `
-	listSections.push([index + ' ' + cmenub + ' ' + v.API, [
+	listSections.push([++index + ' ' + cmenub + ' ' + v.API, [
           ['Get Test', usedPrefix + 'get ' + v.Link, des]
         ]])
 	})

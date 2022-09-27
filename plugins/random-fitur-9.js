@@ -39,8 +39,9 @@ if (command == 'fotoduck') {
 }
 
 if (command == 'fotobear') {
-if (!args[0]) throw `Contoh:\n${usedPrefix + command} 600 600`
-if (!args[1]) throw `Contoh:\n${usedPrefix + command} 600 600`
+let nih = `Contoh:\n${usedPrefix + command} lebar tinggi\n${usedPrefix + command} 600 600`
+if (!args[0]) throw nih
+if (!args[1]) throw nih
   let res = `https://placebear.com/${args[0]}/${args[1]}`
   await conn.sendButton(m.chat, `*Bear:*
   ${args[0]}`, wm, res, [
@@ -49,8 +50,9 @@ if (!args[1]) throw `Contoh:\n${usedPrefix + command} 600 600`
 }
 
 if (command == 'fotodog') {
-if (!args[0]) throw `Contoh:\n${usedPrefix + command} 600 600`
-if (!args[1]) throw `Contoh:\n${usedPrefix + command} 600 600`
+let nih = `Contoh:\n${usedPrefix + command} lebar tinggi\n${usedPrefix + command} 600 600`
+if (!args[0]) throw nih
+if (!args[1]) throw nih
   let res = `https://place.dog/${args[0]}/${args[1]}`
   await conn.sendButton(m.chat, `*Dog:*
   ${args[0]}`, wm, res, [
@@ -95,11 +97,12 @@ if (command == 'fotoshibe') {
 }
 
 if (command == 'kitten') {
-if (!args[0] || !args[1]) throw 'Masukkan Size'
-  let res = await fetch('https://placekitten.com/' + args[0] + '/' + args[1])
-  let x = await res.json()
+let nih = `Contoh:\n${usedPrefix + command} lebar tinggi\n${usedPrefix + command} 600 600`
+if (!args[0]) throw nih
+if (!args[1]) throw nih
+  let res = 'https://placekitten.com/' + Number(args[0]) + '/' + Number(args[1])
   await conn.sendButton(m.chat, `*Kitten:*
-  ${command}`, wm, x.getRandom(), [
+  ${command}`, wm, res, [
                 ['Next', `${usedPrefix + command}`]
             ], fakes, adReply)
 }

@@ -6,10 +6,10 @@ let handler = async(m, {
 	if (args[0].length > 14) throw 'Nomor Kepanjangan'
 	if (args[0].length < 7) throw 'Nomor Kependekan'
 	if (args[0].startsWith('0')) throw 'Gunakan format 62'
+	if (!args[0]) throw 'Masukkan Teks'
 	
     let mention = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : args[0] ? (args[0].replace(/[@ .+-]/g, '') + '@s.whatsapp.net') : ''
 	let txt = (args.length > 1 ? args.slice(1).join(' ') : '') || ''
-	if (!txt) throw 'Masukkan Teks'
 	let q = m.quoted ? m.quoted : m
 	let mime = (q.msg || q).mimetype || ''
 	let tujuan = `👋 Saya *${conn.user.name}*, Pesan Untuk Kamu

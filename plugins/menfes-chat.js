@@ -43,15 +43,15 @@ ${htjava} ${txt}
             if (room) {
             // Batas
 	if (!m.quoted) {
-		await conn.sendButton(mention, tujuan, cap, null, [['balas', 'balas']], m)
+		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], m)
 	} else {
-		await conn.sendButton(mention, tujuan, cap, null, [['balas', 'balas']], m)
+		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], m)
 		let media = q ? await m.getQuotedObj() : false || m
 		await conn.copyNForward(mention, media, false).catch(_ => _)
 	}
 	await conn.sendButton(m.chat, suks, wm, null, [['Ok', 'Huuu']], m, { mentions: conn.parseMention(suks) })
             // Batas
-                room.b = mention
+                room.b = m.sender
                 room.state = 'CHATTING'
                 await this.sendButton(room.a, '*Balasan ditemukan!*', author, null, [['End', `.menfesleave`]], m)
             } else {
@@ -59,7 +59,7 @@ ${htjava} ${txt}
                 this.menfes[id] = {
                     id,
                     a: m.sender,
-                    b: mention,
+                    b: '',
                     state: 'WAITING',
                     check: function (who = '') {
                         return [this.a, this.b].includes(who)

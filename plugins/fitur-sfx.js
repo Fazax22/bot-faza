@@ -202,8 +202,27 @@ return m.reply('Error kan')
 }
 }
 
+if (command == 'sfx6') {
+let hasil = Array(119).fill(1).map((n, i) => n + i)
+try {
+	let row = Object.keys(hasil).map((v, index) => ({
+		title: 'Sound ke- ' + hasil[v],
+		description: '\n*By:* ' + author,
+		rowId: usedPrefix + 'get https://raw.githubusercontent.com/WH-MODS-BOT/Sounds/main/sound' + hasil[v] + '.mp3'
+	}))
+	let button = {
+		buttonText: `☂️ SFX Disini ☂️`,
+		description: `⚡ Silakan pilih SFX di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`,
+		footerText: wm
+	}
+	return await conn.sendListM(m.chat, button, row, m)
+} catch (e) {
+return m.reply('Error kan')
 }
-handler.command = handler.help = ['sfx', 'sfx2', 'sfx3', 'sfx4', 'sfx5', 'smap']
+}
+
+}
+handler.command = handler.help = ['sfx', 'sfx2', 'sfx3', 'sfx4', 'sfx5', 'sfx6', 'smap']
 handler.tags = ['audio']
 
 export default handler

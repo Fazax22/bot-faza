@@ -7,7 +7,7 @@ export async function before(m, { match }) {
     if (room) {
         if (/^.*(menfesleave|menfesstart)/.test(m.text))
             return
-        let other = [room.a, room.b].find(user => user !== room.a)
+        let other = [room.a, room.b].find(user => user !== m.sender)
         await m.copyNForward(other, true)
     }
     return !0

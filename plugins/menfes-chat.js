@@ -31,19 +31,20 @@ ${htjava} ${txt}
         case 'menfesleave': {
             let room = Object.values(this.menfes).find(room => room.check(m.sender))
             if (!room) return this.sendButton(m.chat, '*Kamu tidak sedang berada di menfes chat*', author, null, [['Ok', 'Huuu']], m)
-            m.reply('Ok')
+            m.reply('Sukses Hapus Menfes')
             let other = room.other(m.sender)
             if (other) await this.sendButton(other, '*Balasan meninggalkan chat*', author, null, [['Ok', 'Huuu']], m)
             delete this.menfes[room.id]
             if (command === 'menfesleave') break
         }
         case 'menfesstart': {
-            if (Object.values(this.menfes).find(room => room.check(m.sender))) return this.sendButton(m.chat, '*Kamu masih berada di dalam menfes chat, menunggu Balasan*', author, null, [['Keluar', `.menfesleave`]], m)
+            if (Object.values(this.menfes).find(room => room.check(m.sender))) return this.sendButton(m.chat, '*Kamu masih berada di dalam menfes chat, menunggu Balasan*', author, null, [['Hapus Menfes', '.menfesleave']], m)
             let room = Object.values(this.menfes).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
                 room.b = m.sender
                 room.state = 'CHATTING'
-                await this.sendButton(room.a, '*Balasan ditemukan!*', author, null, [['End', `.menfesleave`]], m)
+                await this.sendButton(room.a, '*Menfes Chat Tersambung!*', author, null, [['Hapus Menfes', '.menfesleave']], m)
+                await this.sendButton(m.sender, '*Menfes Chat Tersambung!*', author, null, [['Hapus Menfes', '.menfesleave']], m)
             } else {
             // Batas
 	if (!m.quoted) {
@@ -68,7 +69,7 @@ ${htjava} ${txt}
                         return who === this.a ? this.b : who === this.b ? this.a : ''
                     },
                 }
-                await this.sendButton(m.chat, '*Menunggu Balasan...*', author, null, [['Keluar', `.menfesleave`]], m)
+                await this.sendButton(m.chat, '*Menunggu Balasan...*', author, null, [['Hapus Menfes', '.menfesleave']], m)
             }
             break
         }

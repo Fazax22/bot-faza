@@ -15,6 +15,7 @@ let a_ = m.quoted ? m.quoted : m
   let link
   try {
   if (/webp/g.test(b_)) link = await webp2png(c_)
+        else if (m.mentionedJid?.[0]) link = await conn.profilePictureUrl(m.mentionedJid[0], 'image')
         else if (/image/g.test(b_)) link = await uploadImage(c_)
         else if (/video/g.test(b_)) link = await uploadFile(c_)
         else if (/viewOnce/g.test(b_)) link = await uploadFile(c_)

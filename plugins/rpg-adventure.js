@@ -2,11 +2,8 @@ import fetch from 'node-fetch'
 
 const cooldown = 300000
 let handler = async (m, { usedPrefix }) => {
-
-let ct = ['AF','AX','AL','DZ','AS','AD','AO','AI','AQ','AG','AR','AM','AW','AU','AT','AZ','BS','BH','BD','BB','BY','BE','BZ','BJ','BM','BT','BO','BQ','BA','BW','BV','BR','IO','BN','BG','BF','BI','KH','CM','CA','CV','KY','CF','TD','CL','CN','CX','CC','CO','KM','CG','CD','CK','CR','CI','HR','CU','CW','CY','CZ','DK','DJ','DM','DO','EC','EG','SV','GQ','ER','EE','ET','FK','FO','FJ','FI','FR','GF','PF','TF','GA','GM','GE','DE','GH','GI','GR','GL','GD','GP','GU','GT','GG','GN','GW','GY','HT','HM','VA','HN','HK','HU','IS','IN','ID','IR','IQ','IE','IM','IL','IT','JM','JP','JE','JO','KZ','KE','KI','KP','KR','XK','KW','KG','LA','LV','LB','LS','LR','LY','LI','LT','LU','MO','MK','MG','MW','MY','MV','ML','MT','MH','MQ','MR','MU','YT','MX','FM','MD','MC','MN','ME','MS','MA','MZ','MM','NA','NR','NP','NL','AN','NC','NZ','NI','NE','NG','NU','NF','MP','NO','OM','PK','PW','PS','PA','PG','PY','PE','PH','PN','PL','PT','PR','QA','RS','RE','RO','RU','RW','BL','SH','KN','LC','MF','PM','VC','WS','SM','ST','SA','SN','CS','SC','SL','SG','SX','SK','SI','SB','SO','ZA','GS','SS','ES','LK','SD','SR','SJ','SZ','SE','CH','SY','TW','TJ','TZ','TH','TL','TG','TK','TO','TT','TN','TR','XT','TM','TC','TV','UG','UA','AE','GB','US','UM','UY','UZ','VU','VE','VN','VG','VI','WF','EH','YE','ZM','ZW']
-
-let ke = await fetch(`https://api.worldbank.org/v2/country/${ct.getRandom()}?format=json`)
-let kt = await ke.json()
+let ke = await fetch('https://random-data-api.com/api/v2/addresses')
+let v = await ke.json()
 let imgr = flaaa.getRandom()
     let user = global.db.data.users[m.sender]
     let timers = (cooldown - (new Date - user.lastadventure))
@@ -25,13 +22,32 @@ let imgr = flaaa.getRandom()
 [`ᴅᴀɪʟʏ`, `${usedPrefix}daily`]
 ], m)
     const rewards = reward(user)
-    let text = `🔖 ᴀᴅᴠᴇɴᴛᴜʀᴇ ᴛᴏ *${kt[1][0].name}*
+    let text = `🔖 ᴀᴅᴠᴇɴᴛᴜʀᴇ ᴛᴏ *${v.street_name}*
 
 ${cmenut}
-${cmenub} *ɪᴅ :* ${kt[1][0].id}
-${cmenub} *ᴄɪᴛʏ :* ${kt[1][0].capitalCity}
-${cmenub} *ʟᴏɴɢɪᴛᴜᴅᴇ :* ${kt[1][0].longitude}
-${cmenub} *ʟᴀᴛɪᴛᴜᴅᴇ :* ${kt[1][0].latitude}
+${cmenub} *building number:* ${v.building_number}
+${cmenub} *city:* ${v.city}
+${cmenub} *uid:* ${v.uid}
+${cmenub} *city prefix:* ${v.city_prefix}
+${cmenub} *city suffix:* ${v.city_suffix}
+${cmenub} *community:* ${v.community}
+${cmenub} *country:* ${v.country}
+${cmenub} *country code:* ${v.country_code}
+${cmenub} *full address:* ${v.full_address}
+${cmenub} *id:* ${v.id}
+${cmenub} *latitude:* ${v.latitude}
+${cmenub} *longitude:* ${v.longitude}
+${cmenub} *mail box:* ${v.mail_box}
+${cmenub} *postcode:* ${v.postcode}
+${cmenub} *secondary address:* ${v.secondary_address}
+${cmenub} *state:* ${v.state}
+${cmenub} *state abbr:* ${v.state_abbr}
+${cmenub} *street address:* ${v.street_address}
+${cmenub} *street name:* ${v.street_name}
+${cmenub} *street suffix:* ${v.street_suffix}
+${cmenub} *time zone:* ${v.time_zone}
+${cmenub} *zip:* ${v.zip}
+${cmenub} *zip code:* ${v.zip_code}
 ${cmenuf}
 
 ᴀᴅᴠᴇɴᴛᴜʀᴇ ғɪɴɪsʜ (. ❛ ᴗ ❛.)
@@ -49,7 +65,7 @@ ${cmenua}`
     }
     conn.sendButton(m.chat, 
     `${htki} ADVENTURE ${htka}`, 
-    text.trim(), `https://static-maps.yandex.ru/1.x/?lang=id-ID&ll=${kt[1][0].longitude},${kt[1][0].latitude}&z=12&l=map&size=600,300`, [
+    text.trim(), `https://static-maps.yandex.ru/1.x/?lang=id-ID&ll=${v.longitude},${v.latitude}&z=12&l=map&size=600,300`, [
 [`ɪɴᴠᴇɴᴛᴏʀʏ`, `${usedPrefix}inventory`],
 [`ᴅᴀɪʟʏ`, `${usedPrefix}daily`]
 ], m)

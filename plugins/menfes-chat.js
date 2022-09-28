@@ -22,7 +22,7 @@ let suks = `Mengirim Pesan *${mime ? mime : 'Teks'}*
 👥 Untuk : @${mention.replace(/@.+/, '')}
 
 ${htki} 💌 Pesan ${htka}
-${htjava} ${txt}
+${htjava} ${txt ? txt : 'Pesan Kosong'}
 `
     // Batas
     command = command.toLowerCase()
@@ -30,31 +30,31 @@ ${htjava} ${txt}
     switch (command) {
         case 'menfesleave': {
             let room = Object.values(this.menfes).find(room => room.check(m.sender))
-            if (!room) return this.sendButton(m.chat, '*Kamu tidak sedang berada di menfes chat*', author, null, [['Ok', 'Huuu']], m)
+            if (!room) return this.sendButton(m.chat, '*Kamu tidak sedang berada di menfes chat*', author, null, [['Mulai Menfes', '.menfesstart']], null)
             m.reply('Sukses Hapus Menfes')
             let other = room.other(m.sender)
-            if (other) await this.sendButton(other, '*Balasan meninggalkan chat*', author, null, [['Ok', 'Huuu']], m)
+            if (other) await this.sendButton(other, room.b + ' *Meninggalkan chat*', author, null, [['Mulai Menfes', '.menfesstart']], null)
             delete this.menfes[room.id]
             if (command === 'menfesleave') break
         }
         case 'menfesstart': {
-            if (Object.values(this.menfes).find(room => room.check(m.sender))) return this.sendButton(m.chat, '*Kamu masih berada di dalam menfes chat, menunggu Balasan*', author, null, [['Hapus Menfes', '.menfesleave']], m)
+            if (Object.values(this.menfes).find(room => room.check(m.sender))) return this.sendButton(m.chat, '*Kamu masih berada di dalam menfes chat, menunggu Balasan*', author, null, [['Hapus Menfes', '.menfesleave']], null)
             let room = Object.values(this.menfes).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
                 room.b = m.sender
                 room.state = 'CHATTING'
-                await this.sendButton(room.a, '*Menfes Chat Tersambung!*', author, null, [['Hapus Menfes', '.menfesleave']], m)
-                await this.sendButton(m.sender, '*Menfes Chat Tersambung!*', author, null, [['Hapus Menfes', '.menfesleave']], m)
+                await this.sendButton(room.a, '*Menfes Chat Tersambung!*\nDengan: ' + m.sender, author, null, [['Hapus Menfes', '.menfesleave']], null)
+                await this.sendButton(m.sender, '*Menfes Chat Tersambung!*\nDengan: ' + room.a, author, null, [['Hapus Menfes', '.menfesleave']], null)
             } else {
             // Batas
 	if (!m.quoted) {
-		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], m)
+		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], null)
 	} else {
-		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], m)
+		await conn.sendButton(mention, tujuan, cap, null, [['B A L A S', '.menfesstart']], null)
 		let media = q ? await m.getQuotedObj() : false || m
 		await conn.copyNForward(mention, media, false).catch(_ => _)
 	}
-	await conn.sendButton(m.chat, suks, wm, null, [['Ok', 'Huuu']], m, { mentions: conn.parseMention(suks) })
+	await conn.sendButton(m.chat, suks, wm, null, [['Tes Bot', 'tes']], m, { mentions: conn.parseMention(suks) })
             // Batas
                 let id = + new Date
                 this.menfes[id] = {
@@ -69,7 +69,7 @@ ${htjava} ${txt}
                         return who === this.a ? this.b : who === this.b ? this.a : ''
                     },
                 }
-                await this.sendButton(m.chat, '*Menunggu Balasan...*', author, null, [['Hapus Menfes', '.menfesleave']], m)
+                await this.sendButton(m.chat, '*Menunggu Balasan...*', author, null, [['Hapus Menfes', '.menfesleave']], null)
             }
             break
         }

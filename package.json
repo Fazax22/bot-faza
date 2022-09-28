@@ -65,6 +65,7 @@
         "fluent-ffmpeg": "*",
         "form-data": "*",
         "formdata-node": "*",
+        "genius-lyrics": "*",
         "genshin": "*",
         "genshin-db": "*",
         "google-play-scraper": "*",

@@ -7,7 +7,7 @@ let pp = await this.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
 let name = await this.getName(who)
  
 let chat = global.db.data.chats[m.chat]
-    if (!chat.viewonce || chat.isBanned) return
+    if (!chat.viewonce) return
     if (m.mtype == 'viewOnceMessage') {
         let msg = m.message.viewOnceMessage.message
         let type = Object.keys(msg)[0]
@@ -18,11 +18,11 @@ let chat = global.db.data.chats[m.chat]
         }
         if (/video/.test(type)) {
             return this.sendFile(m.chat, buffer, author, msg[type].caption || '', m, null, fakefb)
-            throw '[View Once Video] Detected'
+            return throw '[View Once Video] Detected'
             
         } else if (/image/.test(type)) {
             return this.sendFile(m.chat, buffer, author, msg[type].caption || '', m, null, fakefb)
-            throw '[View Once Image] Detected'
+            return throw '[View Once Image] Detected'
         }
     }
 }

@@ -20,6 +20,8 @@ let name = await conn.getName(who)
 "Anti Sticker",
 "Anti Toxic",
 "Anti Virtex",
+"Anti View Once",
+"Anti Bule",
 "Auto DelVn",
 "Auto Join",
 "Auto Levelup",
@@ -60,6 +62,8 @@ let idop = ["anticall",
 "antisticker",
 "antitoxic",
 "antivirtex",
+"antiviewonce",
+"antibule",
 "autodelvn",
 "autojoin",
 "autolevelup",
@@ -100,6 +104,8 @@ let desop = ["Memblokir user jika menelpon bot",
 "Jangan meng Sticker",
 "Jangan meng Toxic",
 "Jangan meng Virtex",
+"Jangan meng View Once",
+"Jangan meng Bule",
 "Bot Otomatis DelVn",
 "Bot Otomatis Join",
 "Bot Otomatis Levelup",
@@ -295,6 +301,24 @@ let row = Object.keys(namop, desop, idop).map((v, index) => ({
         }
       }
       chat.antiVirtex = isEnable
+      break
+      case 'antiviewonce':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.viewonce = isEnable
+      break
+      case 'antibule':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antibule = isEnable
       break
       case 'antisatir':
       if (m.isGroup) {

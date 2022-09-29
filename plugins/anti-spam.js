@@ -3,14 +3,15 @@ export async function all(m) {
         return
     this.spam = this.spam ? this.spam : {}
     let chat = global.db.data.chats[m.chat]
+    let user = global.db.data.users[m.sender]
     if (chat.antiSpam) {
+    if (nomorown.includes(m.sender)) throw 'Owner Mah Bebas !'
     if (m.sender in this.spam) {
         this.spam[m.sender].count++
         if (m.messageTimestamp.toNumber() - this.spam[m.sender].lastspam > 5) {
             if (this.spam[m.sender].count > 5) {
-               global.db.data.users[m.sender].banned = true
-                let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? this.user.jid : m.sender
-    let caption = `👋 Banned *@${who.split("@")[0]}* Jangan spam!`
+               user.banned = true
+    let caption = `👋 Banned *@${m.sender.split("@")[0]}* Jangan spam!`
     this.sendButton(m.chat, caption, wm, null, [['Disable Anti Spam', '/disable antispam']], m, { mentions: this.parseMention(caption) })
             }
             this.spam[m.sender].count = 0

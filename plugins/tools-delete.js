@@ -1,12 +1,14 @@
 let handler = async (m, { conn, command }) => {
 if (!m.quoted) throw 'Reply pesan yang ingin dihapus'
+
 try {
-let hapus = m.key.participant
-let bang = m.key.id
+let hapus = m.quoted.sender ? m.message.extendedTextMessage.contextInfo.participant : m.key.participant
+let bang = m.quoted.id ? m.message.extendedTextMessage.contextInfo.stanzaId : m.key.id
 return conn.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
- } catch {
+} catch (e) {
 return conn.sendMessage(m.chat, { delete: m.quoted.vM.key })
 }
+
 }
 handler.help = ['del', 'delete']
 handler.tags = ['tools']

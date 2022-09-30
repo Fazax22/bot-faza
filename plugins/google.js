@@ -1,8 +1,8 @@
 import { googleIt } from '@bochilteam/scraper'
-let handler = async (m, { conn, command, args }) => {
+
+let handler = async (m, { conn, usedPrefix, text, command, args }) => {
     const fetch = (await import('node-fetch')).default
     let full = /f$/i.test(command)
-    let text = args.join` `
     if (!text) return conn.reply(m.chat, 'Tidak ada teks untuk di cari', m)
     let url = 'https://google.com/search?q=' + encodeURIComponent(text)
     let search = await googleIt(text)
@@ -12,14 +12,14 @@ let handler = async (m, { conn, command, args }) => {
         url,
         description
     }) => {
-        return `*${title}*\n_${url}_\n_${description}_`
+        return `*Title:* ${title}\n*Url:* ${url}\n*Desc:* ${description}`
     }).join('\n\n')
     try {
         let ss = await (await fetch(global.API('nrtm', '/api/ssweb', { delay: 1000, url, full }))).arrayBuffer()
         if (/<!DOCTYPE html>/i.test(ss.toBuffer().toString())) throw ''
-        await conn.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m)
+        await conn.sendButtonDoc(m.chat, ss, url + '\n\n' + msg, author, 'Search More', usedPrefix + command + ' ' + text, m)
     } catch (e) {
-        m.reply(msg)
+        await conn.sendButtonDoc(m.chat, logo, msg, author, 'Search More', usedPrefix + command + ' ' + text, m)
     }
 }
 handler.help = ['google', 'googlef'].map(v => v + ' <pencarian>')

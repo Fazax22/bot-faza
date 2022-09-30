@@ -14,11 +14,11 @@ let quer = urut[1]
 
 if (comm == 'a') {
 let res = await Client.songs.search(quer)
-let msg = (Object.entries(res).map(([nama, isi]) => { return { nama, ...isi} }))
 let listSections = []
-	Object.values(msg).map((v, index) => {
+	res.map((v, index) => {
 	
-	let des = `*fullTitle:* ${v.fullTitle}
+	let des = `
+	*fullTitle:* ${v.fullTitle}
 	*featuredTitle:* ${v.featuredTitle}
 	*thumbnail:* ${v.thumbnail}
 	*id:* ${v.id}
@@ -27,7 +27,7 @@ let listSections = []
 	`
 	
 	listSections.push([index + ' ' + cmenub + ' ' + v.title, [
-           ['Get Info', usedPrefix + command + ' getl' + v.title, des]
+           ['Get Lyrics', usedPrefix + command + ' get|' + index + '|' + v.title, des]
         ]])
 	})
 	return conn.sendList(m.chat, htki + ' 📺 Genius Search 🔎 ' + htka, `⚡ Silakan pilih Genius Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`, author, `☂️ Genius Search Disini ☂️`, listSections, m)
@@ -61,17 +61,17 @@ let listSections = []
 	`
 	
 	listSections.push([index + ' ' + cmenub + ' ' + v.result.title, [
-          ['Get Info', usedPrefix + command + ' getl' + v.result.title, des]
+          ['Get Song', usedPrefix + command + ' a|' + v.result.title, des]
         ]])
 	})
 	return conn.sendList(m.chat, htki + ' 📺 Genius Search 🔎 ' + htka, `⚡ Silakan pilih Genius Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`, author, `☂️ Genius Search Disini ☂️`, listSections, m)
 	}
 	
-	if (comm == 'get') {
-	let res = await Client.songs.search(quer)
-	let lyrics = Object.values(res.response.hits).map(v => v[0].lyrics)
-	throw lyrics
-	}
+if (comm == 'get') {
+let song = await Client.songs.search(urut[2])
+let lirik = await song[urut[1]].lyrics()
+throw lirik
+}
 	
     }
 handler.command = /^genius$/i

@@ -1,9 +1,9 @@
 import fs from 'fs'
 let handler = async (m, { conn, args }) => {
  let ownerGroup = m.chat.split`-`[0] + '@s.whatsapp.net'
-  aki = m.quoted ? [m.quoted.sender] : m.mentionedJid
+  let aki = m.quoted ? [m.quoted.sender] : m.mentionedJid
   let users = aki.filter(u => !(u == ownerGroup || u.includes(conn.user.jid)))
-  wayy = '_*Asik Dapet Jatah Kick*_'
+  let wayy = '*Kick*'
   for (let i of users) {
   wayy += ` @${i.split('@')[0]}`
   }

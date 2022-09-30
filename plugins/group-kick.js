@@ -13,7 +13,7 @@ let users = m.quoted ? [m.quoted.sender] : m.mentionedJid.filter(u => !areJidsSa
 }
 handler.help = ['kick', '-'].map(v => 'o' + v + ' @user')
 handler.tags = ['owner']
-handler.command = /^(gkick|g-)$/i
+handler.command = /^g?kick$/i
 
 handler.owner = true
 handler.group = true

@@ -9,9 +9,9 @@ let v = await ke.json()
     let dapet = v.ref_country_codes
     let listSections = []
 	Object.values(dapet).map((v, index) => {
-	listSections.push([++index + ' ' + cmenub + '📍Location: ' + v.country, [
 	let lon = v.longitude
 	let lat = v.latitude
+	listSections.push([++index + ' ' + cmenub + '📍Location: ' + v.country, [
           ['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/pin-l-embassy+f74e4e(' + lon + ',' + lat + ')/' + lon + ',' + lat + ',16/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
 ['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-l+000(' + lon + ',' + lat + ')/' + lon + ',' + lat + ',14/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
 ['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/url-https%3A%2F%2Fdocs.mapbox.com%2Fapi%2Fimg%2Fcustom-marker.png(' + lon + ',' + lat + ')/' + lon + ',' + lat + ',15/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],

@@ -5,25 +5,28 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, args, usedPrefix, text, command }) => {
 let ke = await fetch('https://raw.githubusercontent.com/eesur/country-codes-lat-long/master/country-codes-lat-long-alpha3.json')
 let v = await ke.json()
-let cap = 'RESULT'
+
     let dapet = v.ref_country_codes
     let listSections = []
 	Object.values(dapet).map((v, index) => {
 	listSections.push([++index + ' ' + cmenub + '📍Location: ' + v.country, [
-          ['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/pin-l-embassy+f74e4e(-74.0021,40.7338)/-74.0021,40.7338,16/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-l+000(' + lon + ',' + lon + ')/' + lon + ',' + lon + ',14/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/url-https%3A%2F%2Fdocs.mapbox.com%2Fapi%2Fimg%2Fcustom-marker.png(' + lon + ',' + lon + ')/' + lon + ',' + lon + ',15/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + lon + ',' + lon + ',0,60/400x400?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23462eff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22bus%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B' + lon + ',' + lon + '%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23e99401%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22park%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B-122.25916385650635,37.80629162635318%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23d505ff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22music%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B-122.25650310516359,37.8063933469406%5D%7D%7D%5D%7D)/-122.256654,37.804077,13/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B' + lon + '%2C' + lon + '%5D%7D)/' + lon + ',' + lon + ',12/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
-['Style: ' + ++index, usedPrefix + command ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-a+9ed4bd(' + lon + ',' + lon + '),pin-s-b+000(' + lon + ',' + lon + '),path-5+f44-0.5(%7DrpeFxbnjVsFwdAvr@cHgFor@jEmAlFmEMwM_FuItCkOi@wc@bg@wBSgM)/auto/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2]
+          ['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/pin-l-embassy+f74e4e(-74.0021,40.7338)/-74.0021,40.7338,16/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-l+000(' + lon + ',' + lon + ')/' + lon + ',' + lon + ',14/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/light-v10/static/url-https%3A%2F%2Fdocs.mapbox.com%2Fapi%2Fimg%2Fcustom-marker.png(' + lon + ',' + lon + ')/' + lon + ',' + lon + ',15/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + lon + ',' + lon + ',0,60/400x400?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23462eff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22bus%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B' + lon + ',' + lon + '%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23e99401%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22park%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B-122.25916385650635,37.80629162635318%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23d505ff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22music%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B-122.25650310516359,37.8063933469406%5D%7D%7D%5D%7D)/-122.256654,37.804077,13/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B' + lon + '%2C' + lon + '%5D%7D)/' + lon + ',' + lon + ',12/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2],
+['Style: ' + ++index, usedPrefix + command + ' nice https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-a+9ed4bd(' + lon + ',' + lon + '),pin-s-b+000(' + lon + ',' + lon + '),path-5+f44-0.5(%7DrpeFxbnjVsFwdAvr@cHgFor@jEmAlFmEMwM_FuItCkOi@wc@bg@wBSgM)/auto/500x300?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', v.alpha2]
         ]])
 	})
-	return conn.sendList(m.chat, htki + ' 📺 MAPS Search 🔎 ' + htka, `⚡ Silakan pilih MAPS Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`, author, `☂️ MAPS Search Disini ☂️`, listSections, m)
+	if (!args[0]) return conn.sendList(m.chat, htki + ' 📺 MAPS Search 🔎 ' + htka, `⚡ Silakan pilih MAPS Search di tombol di bawah...\n*Teks yang anda kirim:* ${text}\n\nKetik ulang *${usedPrefix + command}* teks anda untuk mengubah teks lagi`, author, `☂️ MAPS Search Disini ☂️`, listSections, m)
+	
 	if (args[0] == 'nice') {
-let url = args[1]
+	let cap = 'RESULT'
+	let url = args[1]
 if (args[1]) return conn.sendButton(m.chat, cap, author, url, [['M E N U', '/menu']], m)
 }
+
 }
 handler.command = /^mapbox$/i
 

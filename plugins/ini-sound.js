@@ -128,6 +128,23 @@ throw `Error`
 }
 
 //VN 3
+if (command == 'soundskane') {
+let vn = `https://raw.githubusercontent.com/WH-MODS-BOT/Soundskane/master/${command}.mp3`//VN 2
+await conn.sendFile(m.chat, vn, text + '.mp3', '', m, null, { contextInfo: {
+            mimetype: 'audio/mp4',
+          externalAdReply :{
+    mediaUrl: sig,
+    mediaType: 2,
+    description: wm, 
+    title: '👋 Hai, ' + name + ' ' + ucapan,
+    body: botdate,
+    thumbnail: await(await fetch(pp)).buffer(),
+    sourceUrl: vn
+     }}
+  })
+  }
+  
+//VN 3
 if (command == 'ringtone') {
 if (!text) throw `Contoh:
 ${usedPrefix + command} black cover`
@@ -148,7 +165,7 @@ await conn.sendFile(m.chat, x.result[0].audio, text + '.mp3', '', m, null, { con
 }
 
 }
-handler.command = handler.help = ['sound', 'ringtone']
+handler.command = handler.help = ['sound', 'soundskane', 'ringtone']
 handler.tags = ['random']
 
 export default handler

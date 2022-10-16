@@ -41,19 +41,19 @@ if (command) {
 switch (template) {
         
             case 'gombal':
-        let ab = await fetch(`https://candaan-api-h590oa540-ardhptr21.vercel.app/api/text`)
+        let ab = await fetch('https://candaan-api-h590oa540-ardhptr21.vercel.app/api/text')
         let ac = await ab.json()
     let ad = ac.data
 	m.reply(ad.getRandom)
             break
             case 'gombal2':
-        let ab2 = await fetch(`https://candaan-api-h590oa540-ardhptr21.vercel.app/api/text/random`)
+        let ab2 = await fetch('https://candaan-api-h590oa540-ardhptr21.vercel.app/api/text/random')
         let ac2 = await ab2.json()
     let ad2 = ac2.data
 	m.reply(ad2)
             break
             case 'image':
-        let bb = await fetch(`https://candaan-api-h590oa540-ardhptr21.vercel.app/api/image`)
+        let bb = await fetch('https://candaan-api-h590oa540-ardhptr21.vercel.app/api/image')
         let bc = await bb.json()
     let bd = bc.data
 	let be = Object.values(bd).map((v, index) => ({
@@ -69,7 +69,7 @@ switch (template) {
 	return await conn.sendListM(m.chat, bf, be, m)
             break
             case 'image2':
-        let puk = `https://candaan-api-h590oa540-ardhptr21.vercel.app/api/image/random`
+        let puk = 'https://candaan-api-h590oa540-ardhptr21.vercel.app/api/image/random'
         let ima = await fetch(puk)
         let kes = await ima.json()
         conn.sendButtonImg(m.chat, kes.url, kes.source, 'Nih.jpg', 'To Sticker', '.s', fakes, adReply)

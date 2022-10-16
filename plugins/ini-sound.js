@@ -129,7 +129,9 @@ throw `Error`
 
 //VN 3
 if (command == 'soundskane') {
-let vn = `https://raw.githubusercontent.com/WH-MODS-BOT/Soundskane/master/${command}.mp3`//VN 2
+if (!text) throw `Contoh:
+${usedPrefix + command} 1`
+let vn = `https://raw.githubusercontent.com/WH-MODS-BOT/Soundskane/master/mangkane${text}.mp3`
 await conn.sendFile(m.chat, vn, text + '.mp3', '', m, null, { contextInfo: {
             mimetype: 'audio/mp4',
           externalAdReply :{
